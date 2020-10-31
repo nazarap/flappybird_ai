@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .fields {
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Flappy Bird Genetic Algorithm</h1>
+
+    <article class="content">
+        <aside class="leftSide">
+            <canvas id="canvas" width="350" height="525"></canvas>
+        </aside>
+        <aside class="rightSide">
+            <aside class="fields">
+                <span class="field">Best score: <span id="bestScoreID">0</span></span>
+                <span class="field">Current score: <span id="scoreID">0</span></span>
+                <span class="field">Population: <span id="populationID">0</span></span>
+                <span class="field">Best population: <span id="bestPopulationID">0</span></span>
+                <span class="field">Bird count: <span id="birdCountID">0</span></span>
+                <span class="field">Alive bird count: <span id="aliveBirdCountID">0</span></span>
+                <span class="link"><a class="linkA" href="../index.html">Try to fight with the best AI player</a></span>
+            </aside>
+        </aside>
+    </article>
+
+
+    <script src="neural.network/synaptic.min.js"></script>
+    <script src="../game.js"></script>
+    <script src="Player.js"></script>
+    <script src="./genetic.algorithm/Unit.js"></script>
+    <script src="./genetic.algorithm/Population.js"></script>
+    <script src="./genetic.algorithm/index.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

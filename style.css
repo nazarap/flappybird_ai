@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+.content {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    width: 100%;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: FlappyBird;
+    src: url(./assets/fonts/flappyBird.ttf);
+}
+canvas {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 3px 11px rgba(0,0,0,0.23);
+    width: 350px;
+    height: 525px;
+}
+.title {
+    font-size: 60px;
+    font-family: FlappyBird, sans-serif;
+    color: #73bf2e;
+}
+.vs {
+    font-family: FlappyBird, sans-serif;
+    color: #73bf2e;
+    font-size: 100px;
+    margin-top: 250px;
+}
+.content > aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.leftSide {
+    height: 100%;
+    width: 50%;
+}
+.rightSide {
+    height: 100%;
+    width: 50%;
+    font-family: FlappyBird, sans-serif;
+}
+.field {
+    font-size: 22px;
+    color: #fb8c00;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.link {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    margin-top: 40px;
+}
+.linkA {
+    color: #03a9f4;
+    font-family: FlappyBird, sans-serif;
+}
+.linkInTitle {
+    font-size: 18px;
+    text-align: center;
+}
+.field > span {
+    color: #73bf2e;
+    font-size: 30px;
+    margin-left: 15px;
+}
