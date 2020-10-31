@@ -16,13 +16,13 @@ window.fbGame = canvasElID => {
     const { width, height } = canvas
     const playHeight = height - 112
 
-    const assets = '/FlappyBird/'
+    const root = `/${location.pathname.split('/')[1]}/`
     const sprite = {
-        bg: assets + 'assets/background.png',
-        ground: assets + 'assets/ground.png',
-        bird: assets + 'assets/bird.png',
-        botpipe: assets + 'assets/botpipe.png',
-        toppipe: assets + 'assets/toppipe.png',
+        bg: root + 'assets/background.png',
+        ground: root + 'assets/ground.png',
+        bird: root + 'assets/bird.png',
+        botpipe: root + 'assets/botpipe.png',
+        toppipe: root + 'assets/toppipe.png',
     }
 
     const createSprite = imagePath => {

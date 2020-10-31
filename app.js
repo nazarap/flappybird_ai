@@ -2,10 +2,11 @@
     const fbGameUser = window.fbGame('canvasUser')
     const GAME_STATES = fbGameUser.GAME_STATES
     const bird = fbGameUser.addBird()
+    const root = `/${location.pathname.split('/')[1]}`
 
     const requestBirnBrain = async () => {
         return new Promise((res, rej) => {
-            fetch('/FlappyBird/genetic.algorithm/best.players/34400.json')
+            fetch(`${root}/genetic.algorithm/best.players/34400.json`)
                 .then(response => response.json())
                 .then(json => res(json))
                 .catch(e => rej(e))

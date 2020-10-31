@@ -49,6 +49,9 @@ canvas {
     width: 50%;
     font-family: FlappyBird, sans-serif;
 }
+.fields {
+    width: 100%
+}
 .field {
     font-size: 22px;
     color: #fb8c00;
