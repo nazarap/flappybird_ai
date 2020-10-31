@@ -28,33 +28,37 @@
     }
 
     let isAIDead = false
+    const pressEvent = () => {
+        const gameState = fbGameUser.currentState()
+        switch (gameState) {
+            // game is not ready
+            case GAME_STATES.INIT:
+                break
+            // game is initialized
+            case GAME_STATES.READY:
+                isAIDead = false
+                fbGameAI.gameLoop(loopAI)
+                fbGameUser.gameLoop()
+                break
+            // game is running
+            case GAME_STATES.PLAY:
+                bird.flap()
+                break
+            // game end
+            case GAME_STATES.DEAD:
+                if (!isAIDead) {
+                    isAIDead = true
+                    fbGameAI.reset()
+                } else {
+                    fbGameAI.initGame()
+                    fbGameUser.initGame()
+                }
+        }
+    }
+    document.addEventListener('touchend', pressEvent, false);
     document.addEventListener('keydown', e => {
         if (e.code === 'Space') {
-            const gameState = fbGameUser.currentState()
-            switch (gameState) {
-                // game is not ready
-                case GAME_STATES.INIT:
-                    break
-                // game is initialized
-                case GAME_STATES.READY:
-                    isAIDead = false
-                    fbGameAI.gameLoop(loopAI)
-                    fbGameUser.gameLoop()
-                    break
-                // game is running
-                case GAME_STATES.PLAY:
-                    bird.flap()
-                    break
-                // game end
-                case GAME_STATES.DEAD:
-                    if (!isAIDead) {
-                        isAIDead = true
-                        fbGameAI.reset()
-                    } else {
-                        fbGameAI.initGame()
-                        fbGameUser.initGame()
-                    }
-            }
+            pressEvent()
         }
     });
 
