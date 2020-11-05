@@ -20,6 +20,16 @@
         populationEl.innerText = geneticAlgorithm.iteration
         scoreEl.innerText = geneticAlgorithm.population.score
     }
+    const download = (content, fileName, contentType) => {
+        let a = document.createElement('a')
+        let file = new Blob([JSON.stringify(content)], { type: contentType })
+        a.href = URL.createObjectURL(file)
+        a.download = fileName
+        a.click()
+    }
+
+    const downloadBestAgentEl = document.getElementById('downloadBestAgent')
+    downloadBestAgentEl.onclick = () => download(geneticAlgorithm.bestAgent.toJSON(), 'json.json', 'text/plain')
     //---
 
     const loop = (gameState, score) => {

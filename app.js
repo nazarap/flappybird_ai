@@ -1,4 +1,5 @@
 (async () => {
+    const Network = window.Network
     const fbGameUser = window.fbGame('canvasUser')
     const GAME_STATES = fbGameUser.GAME_STATES
     const bird = fbGameUser.addBird()
@@ -6,7 +7,7 @@
 
     const requestBirnBrain = async () => {
         return new Promise((res, rej) => {
-            fetch(`${root}/genetic.algorithm/best.players/34400.json`)
+            fetch(`${root}/ai/best.players/34400.json`)
                 .then(response => response.json())
                 .then(json => res(json))
                 .catch(e => rej(e))
@@ -17,7 +18,7 @@
     const fbGameAI = window.fbGame('canvasAI')
     window.fbGameAI = fbGameAI
     const Unit = window.Unit
-    const unitAI = new Unit(0, synaptic.Network.fromJSON(birdBrain))
+    const unitAI = new Unit(0, Network.fromJSON(birdBrain))
 
     const loopAI = () => {
         const pipeBox = fbGameAI.getNextPipe().box()

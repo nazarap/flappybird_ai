@@ -1,5 +1,6 @@
 (() => {
     const Population = window.Population
+    const Network = window.Network
 
     class GeneticAlgorithm {
         constructor(maxUnits = 10, topUnits = 4) {
@@ -20,6 +21,7 @@
             this.bestPopulation = 0
             this.bestSuitability = 0
             this.bestScore = 0
+            this.bestAgent = null
         }
 
         loop (box, suitability) {
@@ -36,7 +38,6 @@
         selection () {
             const sortedUnits = this.population.sortedSuitability()
 
-            console.log(sortedUnits.map(i => i.suitability))
             const bestUnits = []
 
             for (let i = 0; i < this.topUnits; i++) {
@@ -56,6 +57,7 @@
                 this.bestPopulation = this.iteration
                 this.bestSuitability = bestUnits[0].suitability
                 this.bestScore = this.population.score
+                this.bestAgent = bestUnits[0].brain
             }
 
             if (this.mutateRate === 1 && bestUnits[0].suitability < 0){
@@ -87,7 +89,7 @@
 
                 offspring = this.mutation(offspring)
 
-                this.population.units[i] = new Unit(this.population.units[i].index, synaptic.Network.fromJSON(offspring))
+                this.population.units[i] = new Unit(this.population.units[i].index, Network.fromJSON(offspring))
             }
             this.population.score = 0
         }

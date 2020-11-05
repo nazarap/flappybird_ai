@@ -1,5 +1,6 @@
 (() => {
     const Player = window.Player
+    const Network = window.Network
 
     class Unit {
         constructor(index = 0, brain) {
@@ -8,7 +9,7 @@
             this.index = index
             this.score = 0
             this.isWinner = false
-            this.brain = brain || new synaptic.Architect.Perceptron(2, 10, 1)
+            this.brain = brain || new Network(2, 10, 1)
         }
 
         activate (inputs) {
