@@ -6,6 +6,7 @@ window.fbGame = canvasElID => {
         DEAD: 3,
     }
 
+    let resolutionCoef = 1;
     let gameState = GAME_STATES.INIT
     let lastScore = 0
     let score = 0
@@ -15,6 +16,16 @@ window.fbGame = canvasElID => {
     const ctx = canvas.getContext('2d')
     const { width, height } = canvas
     const playHeight = height - 112
+
+    const adjustResolutionCoef = () => {
+        const standardWidth = 1024;
+        resolutionCoef = (standardWidth / window.innerWidth).toFixed(1);
+
+        gameSpeed = 2 * resolutionCoef;
+    };
+
+    adjustResolutionCoef();
+    window.addEventListener('resize', adjustResolutionCoef);
 
     const root = `/${location.pathname.split('/')[1]}/`
     const sprite = {
@@ -53,7 +64,7 @@ window.fbGame = canvasElID => {
         y: height / 5,
         width: 34,
         height: 26,
-        gravity: 3,
+        gravity: 3 * resolutionCoef,
         timeout: null,
         isDead: false,
         isFlap: false,
@@ -62,7 +73,7 @@ window.fbGame = canvasElID => {
             this.isFlap = false
             this.x = 40
             this.y = height / 5 + Math.floor(Math.random() * 20) + 10
-            this.gravity = 3
+            this.gravity = 3 * resolutionCoef;
             if(this.timeout) clearTimeout(this.timeout)
         },
         box () {
@@ -90,10 +101,10 @@ window.fbGame = canvasElID => {
         flap () {
             this.isFlap = true
             if(this.timeout) clearTimeout(this.timeout)
-            this.gravity = -2.6
+            this.gravity = -2.6 * resolutionCoef
             this.timeout = setTimeout(() => {
-                this.gravity = 1.5
-                this.timeout = setTimeout(() => (this.gravity = 3), 500)
+                this.gravity = 1.5 * resolutionCoef
+                this.timeout = setTimeout(() => (this.gravity = 3 * resolutionCoef), 500)
             }, 500)
         },
         update () {
@@ -119,7 +130,9 @@ window.fbGame = canvasElID => {
             const firstBirdBox = firstBird.box()
             pipes.list.forEach(pipe => {
                 const pipeBox = pipe.box()
-                if (pipeBox.x2 === firstBirdBox.x1 + gameSpeed) {
+
+                const spaceBetween = pipeBox.x2 - (firstBirdBox.x1 + gameSpeed);
+                if (spaceBetween > 0 && spaceBetween < gameSpeed) {
                     ++score
                 }
             })
