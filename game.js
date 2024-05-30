@@ -132,7 +132,7 @@ window.fbGame = canvasElID => {
                 const pipeBox = pipe.box()
 
                 const spaceBetween = pipeBox.x2 - (firstBirdBox.x1 + gameSpeed);
-                if (spaceBetween > 0 && spaceBetween < gameSpeed) {
+                if (spaceBetween >= 0 && spaceBetween < gameSpeed) {
                     ++score
                 }
             })
